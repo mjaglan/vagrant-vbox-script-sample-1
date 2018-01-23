@@ -1,4 +1,4 @@
-Example script to run ubuntu 14.04 in headless mode
+Vagrant Single-Machine (ubuntu 14.04) environment in headless mode
 
 ##### How to run
 ```
@@ -8,6 +8,11 @@ vagrant ssh
 ```
 
 ##### vagrant plugins installed
+```
+vagrant plugin install <plugin-name>
+```
+
+plugin-name:
 ```
 vagrant-registration (1.3.1)
 vagrant-service-manager (1.5.0)
