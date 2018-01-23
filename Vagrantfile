@@ -14,12 +14,12 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.box_check_update = false
   config.vm.hostname = "vagrant-test-bed"
-  config.vm.box_url = "https://atlas.hashicorp.com/ubuntu/boxes/trusty64" 
+  config.vm.box_url = "https://atlas.hashicorp.com/ubuntu/boxes/trusty64"
   config.vm.post_up_message = "Welcome to #{BOX_NAME}"
-  
+
   #config.vm.network "private_network", type: "dhcp" # dynamic ip
   config.vm.network "private_network", ip: "10.10.10.10" # static ip
-  
+
   # networking: https://www.vagrantup.com/docs/networking/forwarded_ports.html
   config.vm.network "forwarded_port", guest: 22, host: 20022, protocol: "tcp", auto_correct: false, id: "ssh"
   config.vm.network "forwarded_port", guest: 80, host: 20080, protocol: "tcp", auto_correct: true
@@ -33,13 +33,13 @@ Vagrant.configure(2) do |config|
   # SYNCED FOLDER OPEN ISSUE [as of 26 Apr 2017]: https://pagure.io/atomic-wg/issue/181
   # ACTION: It doesn't seem to work on Windows 10. Disable synced_folder for now.
   config.vm.synced_folder "vagrant", "/vagrant", disabled: true, create: true
-  
+
 
   # Set vagrant machine name http://stackoverflow.com/a/17864388
   config.vm.define :"#{BOX_NAME}" do |t|
   end
 
-  
+
   # https://www.vagrantup.com/docs/virtualbox/configuration.html
   config.vm.provider "virtualbox" do |vb|
   	vb.name = "#{BOX_NAME}"
@@ -55,12 +55,12 @@ Vagrant.configure(2) do |config|
   # LINK: https://github.com/dotless-de/vagrant-vbguest
   # HELP-1: http://discoposse.com/2016/05/23/autoupdating-virtualbox-guest-additions-with-vagrant-vbguest/
   # HELP-2: https://dzone.com/articles/automatically-download-and
-  # set auto_update to false, if you do NOT want to check the correct 
+  # set auto_update to false, if you do NOT want to check the correct
   # additions version when booting this machine
   config.vbguest.auto_update = true
 
 
-  # LOCAL PROVISIONING ############################################################################################### 
+  # LOCAL PROVISIONING ###############################################################################################
   config.vm.provision "shell", path: "post-boot.sh"
 
 end
